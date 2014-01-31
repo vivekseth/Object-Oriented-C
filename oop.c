@@ -1,14 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "Object.h"
-#include "Sub_Object.h"
+#include "Person.h"
 
 int main(int argc, char const *argv[])
 {
-	Sub_Object * so = new_Sub_Object(123, 456, 789);
-	so->methods->print(so);
-	__call(so, print);
-	__call(so, delete);
+	Person * psn = new_Person();
+	__call(psn, print);
+	Object * o = (Object *) psn;
+	printf("%s\n", __call(o, toString));
+	__call(psn, delete);
 	return 0;
 }
 

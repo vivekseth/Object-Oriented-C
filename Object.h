@@ -3,9 +3,10 @@
 
 #define __call(o, m) o->methods->m(o)
 #define __call_args(o, m, ...) o->methods->m(o, __VA_ARGS__)
+//#define __call_cast(o, s, m) o->super->methods->m((s*)o)
 
-//////// OBJECT
-//--Object Structure
+//Object
+//--Structure
 struct Object;
 struct Properties;
 struct Methods;
@@ -19,25 +20,25 @@ struct Object {
 	Methods * methods;
 };
 struct Properties {
-	int x;
-	int * y;
+	char * _;
 };
 struct Methods {
-	void 			(*init_Properties) 		(Properties * p, int x, int y);
-	Object *		(*new_Object) 			(int x, int y);
-	void 			(*uninit_Properties)	(Properties * p);
-	void 			(*delete_Object) 		(Object * o);
-	void 			(*init_Methods) 		(Methods * m);
-	void 			(*uninit_Methods)		(Methods * m);
+	void 	(*delete)	(Object * o);
+	//can be overridden
+	char* 	(*toString)			(void * o);
 };
 
 //--Methods
-Object * new_Object(int x, int y);
+//----Constructor/Desctructor
+Object * new_Object();
 void delete_Object(Object * o);
-void init_Object(Object * o, int x, int y);
-
-void init_Properties(Properties * p, int x, int y);
+void init_Object(Object * o);
+void uninit_Object(Object * o);
+//----init properties
+void init_Properties(Properties * p);
 void uninit_Properties(Properties * p);
-
+//----init methods
 void init_Methods(Methods * m);
 void uninit_Methods(Methods * m);
+//----method declarations
+char* toString_Object(void * o);
