@@ -3,12 +3,25 @@
 #include "Object.h"
 #include "Person.h"
 
+int main(int argc, char const *argv[])
+{
+	Object * obj = new_Object();
+	char *str = __call(obj, toString);
+	printf("%s\n", str);
+	__call(obj, delete);
+	
+	Person * psn = new_Person("Vivek");
+	__call(psn, print);
+	Object * o = (Object *) psn;
+	printf("%s\n", __call(o, toString));
+	__call(psn, delete);
+	return 0;
+}
+
 /*
-																				   |
-# Explanation of current method #
-objects are stored as structs with pointers to:
-	1. a struct that holds its properties
-	2. a struct that holds its methods
+
+
+
 
 A subclass's prop struct _containts_ the struct of its super class. 
 A subclass's method struct _containts_ the struct of its super class. 
@@ -31,17 +44,3 @@ Unfortunately in my current implementation, this repetitve code must be inserted
 
 */
 
-int main(int argc, char const *argv[])
-{
-	Object * obj = new_Object();
-	char *str = __call(obj, toString);
-	printf("%s\n", str);
-	__call(obj, delete);
-	
-	Person * psn = new_Person("Vivek");
-	__call(psn, print);
-	Object * o = (Object *) psn;
-	printf("%s\n", __call(o, toString));
-	__call(psn, delete);
-	return 0;
-}
