@@ -1,9 +1,13 @@
+//HEADER GUARDS
+#ifndef __OBJECT__
+#define __OBJECT__ true
+
+
 #include <stdlib.h>
 #include <stdio.h>
 
 #define __call(o, m) o->methods->m(o)
 #define __call_args(o, m, ...) o->methods->m(o, __VA_ARGS__)
-//#define __call_cast(o, s, m) o->super->methods->m((s*)o)
 
 //Object
 //--Structure
@@ -42,3 +46,6 @@ void init_Methods(Methods * m);
 void uninit_Methods(Methods * m);
 //----method declarations
 char* toString_Object(void * o);
+
+
+#endif

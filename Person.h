@@ -1,3 +1,7 @@
+//HEADER GUARDS
+#ifndef __Person__
+#define __Person__ true
+
 #include "Object.h"
 
 //////// SUB OBJECT
@@ -27,12 +31,12 @@ struct Person_Methods {
 };
 
 //--Methods
-Person * new_Person();
+Person * new_Person(char * name);
 void delete_Person(Person * o);
-void init_Person(Person * o);
+void init_Person(Person * o, char * name);
 void uninit_Person(Person * o);
 
-void init_Person_Properties(Person_Properties * p);
+void init_Person_Properties(Person_Properties * p, char * name);
 void uninit_Person_Properties(Person_Properties * p);
 void init_Person_Methods(Person_Methods * m);
 void uninit_Person_Methods(Person_Methods * m);
@@ -40,3 +44,7 @@ void uninit_Person_Methods(Person_Methods * m);
 //override
 char* toString_Person(void * o);
 void print(void * o);
+
+
+#endif
+
